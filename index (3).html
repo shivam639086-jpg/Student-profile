@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivam Mishra — Student Profile</title>
+<style>
+  :root{
+    --bg: #0b0f14;
+    --panel: #111823;
+    --line: #1f2a38;
+    --text: #e8edf3;
+    --muted: #8695a7;
+    --accent: #4fd1c5;
+    --accent2: #f2b134;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width: 980px; margin: 0 auto; padding: 56px 28px 100px;}
+
+  header{
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 36px;
+    margin-bottom: 48px;
+    display:flex;
+    align-items:center;
+    gap: 32px;
+    flex-wrap:wrap;
+  }
+  .avatar{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    flex-shrink:0;
+  }
+  header .eyebrow{
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  header h1{
+    font-size: 40px;
+    font-weight: 700;
+  }
+  header .tag{
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 6px;
+  }
+  .socials{
+    margin-top: 14px;
+  }
+  .socials a{
+    display:inline-block;
+    color: var(--bg);
+    background: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration:none;
+    padding: 8px 18px;
+    border-radius: 22px;
+  }
+
+  section{margin-bottom: 52px;}
+  h2{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  h2::before{
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    display:inline-block;
+  }
+
+  .about-text{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    font-size: 16px;
+    color: var(--text);
+  }
+  .about-text p{margin-bottom: 14px;}
+  .about-text p:last-child{margin-bottom:0;}
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .card .label{
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .card .value{
+    font-size: 17px;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  .skills-cols{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .skill-box{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .skill-box h3{
+    font-size: 14px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .skill-box.learning h3{color: var(--accent2);}
+  .skill-box.known h3{color: var(--accent);}
+  .pill-row{display:flex; flex-wrap:wrap; gap: 10px;}
+  .pill{
+    background: rgba(79,209,197,0.12);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .skill-box.learning .pill{
+    background: rgba(242,177,52,0.12);
+    border: 1px solid var(--accent2);
+    color: var(--accent2);
+  }
+
+  table{
+    width:100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  th, td{
+    text-align:left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  th{
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .contact-list{list-style:none;}
+  .contact-list li{
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    font-size: 16px;
+  }
+  .contact-list li:last-child{border-bottom:none;}
+  .contact-list .k{color:var(--muted);}
+  .contact-list a{color: var(--accent); text-decoration:none;}
+
+  .achieve-list{list-style:none;}
+  .achieve-list li{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    position:relative;
+    padding-left: 40px;
+  }
+  .achieve-list li:last-child{margin-bottom:0;}
+  .achieve-list li::before{
+    content: "✓";
+    position:absolute;
+    left: 16px;
+    color: var(--accent);
+    font-weight:700;
+  }
+
+  footer{
+    margin-top: 70px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="photo.jpg" alt="Shivam Mishra" class="avatar">
+    <div>
+      <div class="eyebrow">Student Profile</div>
+      <h1>SHIVAM MISHRA</h1>
+      <div class="tag">B.Tech CSE (AI Specialization) · Babu Banarsi Das University, Lucknow</div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/shivam-mishra-b5a6a939a" target="_blank" rel="noopener">LinkedIn Profile →</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <div class="about-text">
+      <p>I am a B.Tech CSE (AI Specialization) student at Babu Banarsi Das University, Lucknow, currently in my 2nd year. I have a strong interest in programming and Artificial Intelligence, and I am continuously working on improving my skills through self-study and hands-on projects.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-cols">
+      <div class="skill-box known">
+        <h3>Languages I Know</h3>
+        <div class="pill-row">
+          <span class="pill">Python</span>
+          <span class="pill">C</span>
+          <span class="pill">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-box learning">
+        <h3>Languages I'm Learning</h3>
+        <div class="pill-row">
+          <span class="pill">JavaScript</span>
+          <span class="pill">Java</span>
+          <span class="pill">C++</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Basic Details</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="label">Full Name</div>
+        <div class="value">SHIVAM MISHRA</div>
+      </div>
+      <div class="card">
+        <div class="label">Roll No / Enrollment No</div>
+        <div class="value">1250439396</div>
+      </div>
+      <div class="card">
+        <div class="label">Course</div>
+        <div class="value">B.Tech CSE - AI</div>
+      </div>
+      <div class="card">
+        <div class="label">Current Semester</div>
+        <div class="value">Semester 3</div>
+      </div>
+      <div class="card">
+        <div class="label">University</div>
+        <div class="value">Babu Banarsi Das University, Lucknow</div>
+      </div>
+      <div class="card">
+        <div class="label">Batch / Session</div>
+        <div class="value">2025-2029</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact Information</h2>
+    <ul class="contact-list">
+      <li><span class="k">Email</span><span>s.mishra4421@bbdu.ac.in</span></li>
+      <li><span class="k">Phone</span><span>+91 6390862401</span></li>
+      <li><span class="k">Address</span><span>Lucknow, Uttar Pradesh</span></li>
+      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/shivam-mishra-b5a6a939a" target="_blank" rel="noopener">View Profile</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Academic Results</h2>
+    <table>
+      <tr>
+        <th>Semester</th>
+        <th>SGPA</th>
+        <th>CGPA</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Semester 1</td>
+        <td>6.36</td>
+        <td>6.36</td>
+        <td>Pass</td>
+      </tr>
+      <tr>
+        <td>Semester 2</td>
+        <td>8.19</td>
+        <td>7.28</td>
+        <td>Pass</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <ul class="achieve-list">
+      <li>Skilled at using AI tools (such as Claude and ChatGPT) for coding, research, and content creation, applying them effectively across various academic and personal projects.</li>
+      <li>Designed and developed a personal profile website and successfully deployed it using GitHub Pages.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Goals</h2>
+    <div class="about-text">
+      <p>Going forward, I aim to become a skilled AI/ML developer and work on projects that solve real-world problems. I am focused on strengthening my technical foundation and building an all-in-one personal application that combines study tools, an AI assistant, and productivity features.</p>
+    </div>
+  </section>
+
+  <footer>
+    Last updated: July 2026
+  </footer>
+
+</div>
+</body>
+</html>
